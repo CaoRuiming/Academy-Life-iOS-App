@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -30,7 +31,7 @@
         <!--Top Stories-->
         <scene sceneID="SeT-Hd-RFS">
             <objects>
-                <tableViewController storyboardIdentifier="TopStoriesViewController" id="GdN-G5-NHv" customClass="TopStoriesTableViewController" customModule="CA_Life" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TopStoriesViewController" title="Top Stories" id="GdN-G5-NHv" customClass="TopStoriesTableViewController" customModule="CA_Life" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="iKa-La-sRI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -67,7 +68,10 @@
                                     <outlet property="cellContent" destination="Y0e-NP-p4A" id="8i0-KF-BG7"/>
                                     <outlet property="cellImage" destination="qrS-3a-Htm" id="yIU-27-JM5"/>
                                     <outlet property="cellTitle" destination="9j0-Dn-zbL" id="eyn-hi-WJi"/>
-                                    <segue destination="2IP-tE-Am0" kind="show" id="B6o-D5-Cd8"/>
+                                    <segue destination="2IP-tE-Am0" kind="show" id="B6o-D5-Cd8">
+                                        <segue key="commit" inheritsFrom="parent" id="4bg-hw-jKl"/>
+                                        <segue key="preview" inheritsFrom="commit" id="CLV-cS-twC"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -119,4 +123,7 @@
     <resources>
         <image name="DefaultImage" width="150" height="150"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="B6o-D5-Cd8"/>
+    </inferredMetricsTieBreakers>
 </document>
