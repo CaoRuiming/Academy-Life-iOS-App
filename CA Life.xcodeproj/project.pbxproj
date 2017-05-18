@@ -14,6 +14,10 @@
 		9C874E641ECDDB4E00C70CED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C874E621ECDDB4E00C70CED /* LaunchScreen.storyboard */; };
 		9C874E6F1ECDDB4E00C70CED /* CA_LifeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C874E6E1ECDDB4E00C70CED /* CA_LifeTests.swift */; };
 		9C874E7A1ECDDB4E00C70CED /* CA_LifeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C874E791ECDDB4E00C70CED /* CA_LifeUITests.swift */; };
+		9C874E881ECDDE2100C70CED /* TopStoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C874E871ECDDE2100C70CED /* TopStoriesTableViewController.swift */; };
+		9C874E8A1ECDDEA800C70CED /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C874E891ECDDEA800C70CED /* Article.swift */; };
+		9C874E8C1ECDDEFA00C70CED /* TopStoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C874E8B1ECDDEFA00C70CED /* TopStoriesTableViewCell.swift */; };
+		9C874E8E1ECDDF4500C70CED /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C874E8D1ECDDF4500C70CED /* ArticleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		9C874E751ECDDB4E00C70CED /* CA LifeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CA LifeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C874E791ECDDB4E00C70CED /* CA_LifeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CA_LifeUITests.swift; sourceTree = "<group>"; };
 		9C874E7B1ECDDB4E00C70CED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C874E871ECDDE2100C70CED /* TopStoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopStoriesTableViewController.swift; sourceTree = "<group>"; };
+		9C874E891ECDDEA800C70CED /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		9C874E8B1ECDDEFA00C70CED /* TopStoriesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopStoriesTableViewCell.swift; sourceTree = "<group>"; };
+		9C874E8D1ECDDF4500C70CED /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +108,10 @@
 				9C874E591ECDDB4E00C70CED /* AppDelegate.swift */,
 				9C874E5B1ECDDB4E00C70CED /* ViewController.swift */,
 				9C874E5D1ECDDB4E00C70CED /* Main.storyboard */,
+				9C874E871ECDDE2100C70CED /* TopStoriesTableViewController.swift */,
+				9C874E8B1ECDDEFA00C70CED /* TopStoriesTableViewCell.swift */,
+				9C874E8D1ECDDF4500C70CED /* ArticleViewController.swift */,
+				9C874E891ECDDEA800C70CED /* Article.swift */,
 				9C874E601ECDDB4E00C70CED /* Assets.xcassets */,
 				9C874E621ECDDB4E00C70CED /* LaunchScreen.storyboard */,
 				9C874E651ECDDB4E00C70CED /* Info.plist */,
@@ -259,7 +271,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C874E8C1ECDDEFA00C70CED /* TopStoriesTableViewCell.swift in Sources */,
+				9C874E8E1ECDDF4500C70CED /* ArticleViewController.swift in Sources */,
+				9C874E8A1ECDDEA800C70CED /* Article.swift in Sources */,
 				9C874E5C1ECDDB4E00C70CED /* ViewController.swift in Sources */,
+				9C874E881ECDDE2100C70CED /* TopStoriesTableViewController.swift in Sources */,
 				9C874E5A1ECDDB4E00C70CED /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,6 +523,7 @@
 				9C874E801ECDDB4E00C70CED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9C874E811ECDDB4E00C70CED /* Build configuration list for PBXNativeTarget "CA LifeTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +532,7 @@
 				9C874E831ECDDB4E00C70CED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9C874E841ECDDB4E00C70CED /* Build configuration list for PBXNativeTarget "CA LifeUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +541,7 @@
 				9C874E861ECDDB4E00C70CED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
