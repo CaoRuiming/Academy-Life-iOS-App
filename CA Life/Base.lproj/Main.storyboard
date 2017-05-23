@@ -90,6 +90,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="News" id="DQG-zT-fqm"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="132-xV-fc9">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refresh:" destination="GdN-G5-NHv" eventType="valueChanged" id="LMu-1T-LKA"/>
+                        </connections>
+                    </refreshControl>
                     <connections>
                         <segue destination="2IP-tE-Am0" kind="show" identifier="viewArticle" id="XtD-US-1Ga"/>
                     </connections>

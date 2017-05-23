@@ -18,7 +18,7 @@ class NewsTableViewController: UITableViewController, XMLParserDelegate {
     var contents = [String]()
     var urls = [String]()
     
-    //Variables for XML parser
+    //Variables for XML parser functions
     var currentElement:String = ""
     var passTitle:Bool = false
     var passURL:Bool = false
@@ -28,25 +28,7 @@ class NewsTableViewController: UITableViewController, XMLParserDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        parser = XMLParser(contentsOf: URL(string: "http://ca-life.org/category/news/feed/")!)!
-        parser.delegate = self
-        
-        let success:Bool = parser.parse()
-        
-        if success {
-            print("parse succeeded")
-            titles.remove(at: 0)
-            print(titles)
-            urls.remove(at: 0)
-            print(urls)
-            print(contents)
-        } else {
-            print("parse failed")
-        }
-        
-        //loadSampleArticles()
-        loadArticles()
+        reloadArticles()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -89,50 +71,7 @@ class NewsTableViewController: UITableViewController, XMLParserDelegate {
     }
     
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    //MARK: XMLParserDelegate Functions
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         currentElement=elementName;
@@ -186,16 +125,41 @@ class NewsTableViewController: UITableViewController, XMLParserDelegate {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You selected cell number: \(indexPath.row)")
+        //print("You selected cell number: \(indexPath.row)")
         performSegue(withIdentifier: "viewArticle", sender: articles[indexPath.row].url)
     }
     
+    
+    //MARK: Navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "viewArticle" {
-            print("preparing for segue viewArticle")
             let articleViewVC = segue.destination as! ArticleViewController
             articleViewVC.articleUrl = sender as! URL
         }
+    }
+    
+    
+    //MARK: Populating Table Cells
+    
+    private func reloadArticles(){
+        parser = XMLParser(contentsOf: URL(string: "http://ca-life.org/category/news/feed/")!)!
+        parser.delegate = self
+        
+        let success:Bool = parser.parse()
+        
+        if success {
+            print("parse succeeded")
+            titles.remove(at: 0)
+            print(titles)
+            urls.remove(at: 0)
+            print(urls)
+            print(contents)
+        } else {
+            print("parse failed")
+        }
+        articles = [Article]()
+        loadArticles()
     }
     
     private func loadArticles(){
@@ -205,15 +169,11 @@ class NewsTableViewController: UITableViewController, XMLParserDelegate {
             articles.append(newArticle)
         }
     }
-    
-    //Function below used only for testing and prototyping purposes
-    private func loadSampleArticles() {
-        let defaultImage = UIImage(named: "DefaultImage")
-        
-        guard let article1 = Article(title: "Meow", photo: defaultImage!, content: "meowmeowmeowmeowmeowmeow", url: URL(string: "http://ca-life.org/")!) else { fatalError("Unable to instatiate article1") }
-        guard let article2 = Article(title: "Meow", photo: defaultImage!, content: "meowmeowmeowmeowmeowmeow", url: URL(string: "http://columbusacademy.org/")!) else { fatalError("Unable to instatiate article2") }
-        guard let article3 = Article(title: "Meow", photo: defaultImage!, content: "meowmeowmeowmeowmeowmeow", url: URL(string: "http://python.org/")!) else { fatalError("Unable to instatiate article3") }
-        articles += [article1, article2, article3]
+    @IBAction func refresh(_ sender: UIRefreshControl) {
+        reloadArticles()
+        tableView.reloadData()
+        print("refresh succeeded")
+        sender.endRefreshing()
     }
 
 }
