@@ -22,6 +22,7 @@ class NewsTableViewController: UITableViewController, XMLParserDelegate {
     var currentElement:String = ""
     var passTitle:Bool = false
     var passURL:Bool = false
+    var passContent:Bool = false
     var parser = XMLParser()
     
     override func viewDidLoad() {
@@ -39,6 +40,7 @@ class NewsTableViewController: UITableViewController, XMLParserDelegate {
             print(titles)
             urls.remove(at: 0)
             print(urls)
+            print(contents)
         } else {
             print("parse failed")
         }
@@ -134,24 +136,30 @@ class NewsTableViewController: UITableViewController, XMLParserDelegate {
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         currentElement=elementName;
-        if(elementName=="title" || elementName=="link" || elementName=="content:encoded") {
+        if(elementName=="title" || elementName=="link" || elementName=="pubDate") {
             if (elementName == "title") {
                 passTitle = true;
             }
             else if (elementName == "link") {
                 passURL = true;
             }
+            else if (elementName == "pubDate") {
+                passContent = true;
+            }
         }
     }
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         currentElement="";
-        if (elementName=="title" || elementName=="link" || elementName=="content:encoded") {
+        if (elementName=="title" || elementName=="link" || elementName=="pubDate") {
             if (elementName == "title") {
                 passTitle = false;
             }
             else if (elementName == "link") {
                 passURL = false
+            }
+            else if (elementName == "pubDate") {
+                passContent = false
             }
         }
     }
@@ -168,6 +176,9 @@ class NewsTableViewController: UITableViewController, XMLParserDelegate {
         else if (passURL) {
             urls.append(string)
         }
+        else if (passContent) {
+            contents.append(string.substring(to: string.index(string.startIndex, offsetBy: 16)))
+        }
     }
     
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
@@ -183,7 +194,6 @@ class NewsTableViewController: UITableViewController, XMLParserDelegate {
         if segue.identifier == "viewArticle" {
             print("preparing for segue viewArticle")
             let articleViewVC = segue.destination as! ArticleViewController
-            //let i = self.indexPathForCell(cell)!.row
             articleViewVC.articleUrl = sender as! URL
         }
     }
@@ -191,8 +201,7 @@ class NewsTableViewController: UITableViewController, XMLParserDelegate {
     private func loadArticles(){
         let defaultImage = UIImage(named: "DefaultImage")
         for index in 0...(titles.count-1) {
-            //articles.append(Article(title: titles[index], photo: defaultImage!, content: "meow", url: URL(string:urls[index])!))
-            guard let newArticle = Article(title: titles[index], photo: defaultImage!, content: "meow", url: URL(string:urls[index])!) else { fatalError("Unable to instatiate article at index \(index)")}
+            guard let newArticle = Article(title: titles[index], photo: defaultImage!, content: contents[index], url: URL(string:urls[index])!) else { fatalError("Unable to instatiate article at index \(index)")}
             articles.append(newArticle)
         }
     }
