@@ -1,5 +1,5 @@
 //
-//  TopStoriesTableViewController.swift
+//  NewsTableViewController.swift
 //  CA Life
 //
 //  Created by Raymond Cao on 5/18/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TopStoriesTableViewController: UITableViewController, XMLParserDelegate {
+class NewsTableViewController: UITableViewController, XMLParserDelegate {
 
     //MARK: Properties
     var articles = [Article]()
@@ -72,8 +72,8 @@ class TopStoriesTableViewController: UITableViewController, XMLParserDelegate {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "TopStoriesTableViewCell"
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? TopStoriesTableViewCell else { fatalError("The dequeued cell is not an instance of TopStoriesTableViewCell")}
+        let cellIdentifier = "TableViewCell"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? TableViewCell else { fatalError("The dequeued cell is not an instance of TopStoriesTableViewCell")}
         
         let article = articles[indexPath.row]
         

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TopStoriesTableViewCell: UITableViewCell {
+class TableViewCell: UITableViewCell {
     
     @IBOutlet weak var cellImage: UIImageView!
     @IBOutlet weak var cellTitle: UILabel!
