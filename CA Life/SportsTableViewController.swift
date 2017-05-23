@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import Foundation
+import SystemConfiguration
 
 class SportsTableViewController: UITableViewController, XMLParserDelegate {
     
     //MARK: Properties
     var articles = [Article]()
     
-    //Parallel arrays to stored parsed XML data before making Article abojects
+    //Parallel arrays to store parsed XML data before making Article abojects
     var titles = [String]()
     var contents = [String]()
     var urls = [String]()
@@ -144,25 +146,27 @@ class SportsTableViewController: UITableViewController, XMLParserDelegate {
     //MARK: Populating Table Cells
     
     func reloadArticles(){
-        parser = XMLParser(contentsOf: URL(string: "http://ca-life.org/category/sports/feed/")!)!
-        parser.delegate = self
-        
-        let success:Bool = parser.parse()
-        
-        if success {
-            print("parse succeeded")
-            titles.remove(at: 0)
-            titles.remove(at: 0)
-            titles.remove(at: 0)
-            print(titles)
-            urls.remove(at: 0)
-            //print(urls)
-            //print(contents)
-        } else {
-            print("parse failed")
+        if isInternetAvailable() {
+            parser = XMLParser(contentsOf: URL(string: "http://ca-life.org/category/sports/feed/")!)!
+            parser.delegate = self
+            
+            let success:Bool = parser.parse()
+            
+            if success {
+                print("parse succeeded")
+                titles.remove(at: 0)
+                titles.remove(at: 0)
+                titles.remove(at: 0)
+                print(titles)
+                urls.remove(at: 0)
+                //print(urls)
+                //print(contents)
+            } else {
+                print("parse failed")
+            }
+            articles = [Article]()
+            loadArticles()
         }
-        articles = [Article]()
-        loadArticles()
     }
     
     func loadArticles(){
@@ -179,4 +183,25 @@ class SportsTableViewController: UITableViewController, XMLParserDelegate {
         sender.endRefreshing()
     }
     
+    //MARK: Check internet availability
+    func isInternetAvailable() -> Bool
+    {
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        
+        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
+                SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
+            }
+        }
+        
+        var flags = SCNetworkReachabilityFlags()
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+            return false
+        }
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        return (isReachable && !needsConnection)
+    }
 }

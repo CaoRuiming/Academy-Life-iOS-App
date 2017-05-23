@@ -217,7 +217,7 @@
 				TargetAttributes = {
 					9C874E551ECDDB4E00C70CED = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = CH4686WLV9;
+						DevelopmentTeam = YP4MT9FV7Y;
 						ProvisioningStyle = Automatic;
 					};
 					9C874E691ECDDB4E00C70CED = {
@@ -447,10 +447,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = CH4686WLV9;
+				DEVELOPMENT_TEAM = YP4MT9FV7Y;
 				INFOPLIST_FILE = "CA Life/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.ca-life.CA-Life";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.ca-life.CA-Life-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -460,10 +460,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = CH4686WLV9;
+				DEVELOPMENT_TEAM = YP4MT9FV7Y;
 				INFOPLIST_FILE = "CA Life/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.ca-life.CA-Life";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.ca-life.CA-Life-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
