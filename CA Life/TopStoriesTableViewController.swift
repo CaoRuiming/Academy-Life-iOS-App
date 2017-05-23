@@ -8,15 +8,43 @@
 
 import UIKit
 
-class TopStoriesTableViewController: UITableViewController {
+class TopStoriesTableViewController: UITableViewController, XMLParserDelegate {
 
     //MARK: Properties
     var articles = [Article]()
     
+    //Parallel arrays to stored parsed XML data before making Article abojects
+    var titles = [String]()
+    var contents = [String]()
+    var urls = [String]()
+    
+    //Variables for XML parser
+    var currentElement:String = ""
+    var passTitle:Bool = false
+    var passURL:Bool = false
+    var parser = XMLParser()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        loadSampleArticles()
+        
+        
+        parser = XMLParser(contentsOf: URL(string: "http://ca-life.org/category/news/feed/")!)!
+        parser.delegate = self
+        
+        let success:Bool = parser.parse()
+        
+        if success {
+            print("parse succeeded")
+            titles.remove(at: 0)
+            print(titles)
+            urls.remove(at: 0)
+            print(urls)
+        } else {
+            print("parse failed")
+        }
+        
+        //loadSampleArticles()
+        loadArticles()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -104,12 +132,78 @@ class TopStoriesTableViewController: UITableViewController {
     }
     */
     
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+        currentElement=elementName;
+        if(elementName=="title" || elementName=="link" || elementName=="content:encoded") {
+            if (elementName == "title") {
+                passTitle = true;
+            }
+            else if (elementName == "link") {
+                passURL = true;
+            }
+        }
+    }
+    
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        currentElement="";
+        if (elementName=="title" || elementName=="link" || elementName=="content:encoded") {
+            if (elementName == "title") {
+                passTitle = false;
+            }
+            else if (elementName == "link") {
+                passURL = false
+            }
+        }
+    }
+    
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        if (passTitle) {
+            if (string.substring(to: string.index(string.startIndex, offsetBy: 1)) == "’" || string.substring(to: string.index(string.startIndex, offsetBy: 1)) == " " || string.substring(to: string.index(string.startIndex, offsetBy: 1)) == "–") {
+                titles[titles.count-1] = titles[titles.count-1]+string
+            }
+            else {
+                titles.append(string)
+            }
+        }
+        else if (passURL) {
+            urls.append(string)
+        }
+    }
+    
+    func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
+        print("failure error: ", parseError)
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("You selected cell number: \(indexPath.row)")
+        performSegue(withIdentifier: "viewArticle", sender: articles[indexPath.row].url)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "viewArticle" {
+            print("preparing for segue viewArticle")
+            let articleViewVC = segue.destination as! ArticleViewController
+            //let i = self.indexPathForCell(cell)!.row
+            articleViewVC.articleUrl = sender as! URL
+        }
+    }
+    
+    private func loadArticles(){
+        let defaultImage = UIImage(named: "DefaultImage")
+        for index in 0...(titles.count-1) {
+            //articles.append(Article(title: titles[index], photo: defaultImage!, content: "meow", url: URL(string:urls[index])!))
+            guard let newArticle = Article(title: titles[index], photo: defaultImage!, content: "meow", url: URL(string:urls[index])!) else { fatalError("Unable to instatiate article at index \(index)")}
+            articles.append(newArticle)
+        }
+    }
+    
+    //Function below used only for testing and prototyping purposes
     private func loadSampleArticles() {
         let defaultImage = UIImage(named: "DefaultImage")
         
         guard let article1 = Article(title: "Meow", photo: defaultImage!, content: "meowmeowmeowmeowmeowmeow", url: URL(string: "http://ca-life.org/")!) else { fatalError("Unable to instatiate article1") }
-        guard let article2 = Article(title: "Meow", photo: defaultImage!, content: "meowmeowmeowmeowmeowmeow", url: URL(string: "http://ca-life.org/")!) else { fatalError("Unable to instatiate article2") }
-        guard let article3 = Article(title: "Meow", photo: defaultImage!, content: "meowmeowmeowmeowmeowmeow", url: URL(string: "http://ca-life.org/")!) else { fatalError("Unable to instatiate article3") }
+        guard let article2 = Article(title: "Meow", photo: defaultImage!, content: "meowmeowmeowmeowmeowmeow", url: URL(string: "http://columbusacademy.org/")!) else { fatalError("Unable to instatiate article2") }
+        guard let article3 = Article(title: "Meow", photo: defaultImage!, content: "meowmeowmeowmeowmeowmeow", url: URL(string: "http://python.org/")!) else { fatalError("Unable to instatiate article3") }
         articles += [article1, article2, article3]
     }
 

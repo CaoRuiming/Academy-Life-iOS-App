@@ -18,7 +18,7 @@ class ArticleViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        let url = URL(string: "http://ca-life.org/")
+        let url = articleUrl
         let request = URLRequest(url: url!)
         webView.loadRequest(request)
     }
