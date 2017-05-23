@@ -154,7 +154,7 @@ class A_ETableViewController: UITableViewController, XMLParserDelegate {
             titles.remove(at: 0)
             titles.remove(at: 0)
             titles.remove(at: 0)
-            print(titles)
+            //print(titles)
             urls.remove(at: 0)
             //print(urls)
             //print(contents)

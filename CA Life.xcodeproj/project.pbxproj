@@ -59,7 +59,7 @@
 		9C874E891ECDDEA800C70CED /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		9C874E8B1ECDDEFA00C70CED /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		9C874E8D1ECDDF4500C70CED /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
-		9CAB6E501ED4BD340060BC2A /* A&ETableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "A&ETableViewController.swift"; path = "../A&ETableViewController.swift"; sourceTree = "<group>"; };
+		9CAB6E501ED4BD340060BC2A /* A&ETableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "A&ETableViewController.swift"; sourceTree = "<group>"; };
 		9CAB6E521ED4D33C0060BC2A /* SportsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportsTableViewController.swift; sourceTree = "<group>"; };
 		9CAB6E541ED4D4D30060BC2A /* Op&EdTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Op&EdTableViewController.swift"; sourceTree = "<group>"; };
 		9CAB6E561ED4D6EC0060BC2A /* BroadcastsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BroadcastsTableViewController.swift; sourceTree = "<group>"; };
