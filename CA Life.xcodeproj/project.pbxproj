@@ -18,6 +18,10 @@
 		9C874E8A1ECDDEA800C70CED /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C874E891ECDDEA800C70CED /* Article.swift */; };
 		9C874E8C1ECDDEFA00C70CED /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C874E8B1ECDDEFA00C70CED /* TableViewCell.swift */; };
 		9C874E8E1ECDDF4500C70CED /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C874E8D1ECDDF4500C70CED /* ArticleViewController.swift */; };
+		9CAB6E511ED4BD340060BC2A /* A&ETableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAB6E501ED4BD340060BC2A /* A&ETableViewController.swift */; };
+		9CAB6E531ED4D33C0060BC2A /* SportsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAB6E521ED4D33C0060BC2A /* SportsTableViewController.swift */; };
+		9CAB6E551ED4D4D30060BC2A /* Op&EdTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAB6E541ED4D4D30060BC2A /* Op&EdTableViewController.swift */; };
+		9CAB6E571ED4D6EC0060BC2A /* BroadcastsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAB6E561ED4D6EC0060BC2A /* BroadcastsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +59,10 @@
 		9C874E891ECDDEA800C70CED /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		9C874E8B1ECDDEFA00C70CED /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		9C874E8D1ECDDF4500C70CED /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
+		9CAB6E501ED4BD340060BC2A /* A&ETableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "A&ETableViewController.swift"; path = "../A&ETableViewController.swift"; sourceTree = "<group>"; };
+		9CAB6E521ED4D33C0060BC2A /* SportsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportsTableViewController.swift; sourceTree = "<group>"; };
+		9CAB6E541ED4D4D30060BC2A /* Op&EdTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Op&EdTableViewController.swift"; sourceTree = "<group>"; };
+		9CAB6E561ED4D6EC0060BC2A /* BroadcastsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BroadcastsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,9 +113,13 @@
 		9C874E581ECDDB4E00C70CED /* CA Life */ = {
 			isa = PBXGroup;
 			children = (
+				9CAB6E501ED4BD340060BC2A /* A&ETableViewController.swift */,
+				9CAB6E521ED4D33C0060BC2A /* SportsTableViewController.swift */,
 				9C874E591ECDDB4E00C70CED /* AppDelegate.swift */,
 				9C874E5B1ECDDB4E00C70CED /* ViewController.swift */,
 				9C874E5D1ECDDB4E00C70CED /* Main.storyboard */,
+				9CAB6E561ED4D6EC0060BC2A /* BroadcastsTableViewController.swift */,
+				9CAB6E541ED4D4D30060BC2A /* Op&EdTableViewController.swift */,
 				9C874E871ECDDE2100C70CED /* NewsTableViewController.swift */,
 				9C874E8B1ECDDEFA00C70CED /* TableViewCell.swift */,
 				9C874E8D1ECDDF4500C70CED /* ArticleViewController.swift */,
@@ -273,8 +285,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C874E8C1ECDDEFA00C70CED /* TableViewCell.swift in Sources */,
+				9CAB6E551ED4D4D30060BC2A /* Op&EdTableViewController.swift in Sources */,
 				9C874E8E1ECDDF4500C70CED /* ArticleViewController.swift in Sources */,
 				9C874E8A1ECDDEA800C70CED /* Article.swift in Sources */,
+				9CAB6E511ED4BD340060BC2A /* A&ETableViewController.swift in Sources */,
+				9CAB6E571ED4D6EC0060BC2A /* BroadcastsTableViewController.swift in Sources */,
+				9CAB6E531ED4D33C0060BC2A /* SportsTableViewController.swift in Sources */,
 				9C874E5C1ECDDB4E00C70CED /* ViewController.swift in Sources */,
 				9C874E881ECDDE2100C70CED /* NewsTableViewController.swift in Sources */,
 				9C874E5A1ECDDB4E00C70CED /* AppDelegate.swift in Sources */,

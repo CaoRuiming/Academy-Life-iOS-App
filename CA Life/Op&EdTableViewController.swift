@@ -1,15 +1,15 @@
 //
-//  NewsTableViewController.swift
+//  Op&EdTableViewController.swift
 //  CA Life
 //
-//  Created by Raymond Cao on 5/18/17.
+//  Created by Raymond Cao on 5/23/17.
 //  Copyright © 2017 The Academy Life. All rights reserved.
 //
 
 import UIKit
 
-class NewsTableViewController: UITableViewController, XMLParserDelegate {
-
+class Op_EdTableViewController: UITableViewController, XMLParserDelegate {
+    
     //MARK: Properties
     var articles = [Article]()
     
@@ -32,28 +32,28 @@ class NewsTableViewController: UITableViewController, XMLParserDelegate {
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return articles.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "TableViewCell"
@@ -70,7 +70,7 @@ class NewsTableViewController: UITableViewController, XMLParserDelegate {
         return cell
     }
     
-
+    
     //MARK: XMLParserDelegate Functions
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
@@ -143,7 +143,7 @@ class NewsTableViewController: UITableViewController, XMLParserDelegate {
     //MARK: Populating Table Cells
     
     func reloadArticles(){
-        parser = XMLParser(contentsOf: URL(string: "http://ca-life.org/category/news/feed/")!)!
+        parser = XMLParser(contentsOf: URL(string: "http://ca-life.org/category/oped/feed/")!)!
         parser.delegate = self
         
         let success:Bool = parser.parse()
@@ -151,7 +151,8 @@ class NewsTableViewController: UITableViewController, XMLParserDelegate {
         if success {
             print("parse succeeded")
             titles.remove(at: 0)
-            //print(titles)
+            titles.remove(at: 0)
+            print(titles)
             urls.remove(at: 0)
             //print(urls)
             //print(contents)
@@ -175,5 +176,5 @@ class NewsTableViewController: UITableViewController, XMLParserDelegate {
         print("refresh succeeded")
         sender.endRefreshing()
     }
-
+    
 }
