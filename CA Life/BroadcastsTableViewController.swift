@@ -146,6 +146,12 @@ class BroadcastsTableViewController: UITableViewController, XMLParserDelegate {
     
     func reloadArticles(){
         if isInternetAvailable() {
+            //reset everything to prevent duplicate articles
+            articles.removeAll()
+            titles.removeAll()
+            urls.removeAll()
+            contents.removeAll()
+            
             parser = XMLParser(contentsOf: URL(string: "http://ca-life.org/category/videos/the-nate-show/feed/")!)!
             parser.delegate = self
             
@@ -161,7 +167,6 @@ class BroadcastsTableViewController: UITableViewController, XMLParserDelegate {
             } else {
                 print("parse failed")
             }
-            articles = [Article]()
             loadArticles()
         }
     }

@@ -147,6 +147,12 @@ class A_ETableViewController: UITableViewController, XMLParserDelegate {
     
     func reloadArticles(){
         if isInternetAvailable() {
+            //reset everything to prevent duplicate articles
+            articles.removeAll()
+            titles.removeAll()
+            urls.removeAll()
+            contents.removeAll()
+            
             parser = XMLParser(contentsOf: URL(string: "http://ca-life.org/category/arts-and-entertainment/feed/")!)!
             parser.delegate = self
             
@@ -164,7 +170,6 @@ class A_ETableViewController: UITableViewController, XMLParserDelegate {
             } else {
                 print("parse failed")
             }
-            articles = [Article]()
             loadArticles()
         }
     }

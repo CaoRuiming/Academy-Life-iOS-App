@@ -146,6 +146,12 @@ class Op_EdTableViewController: UITableViewController, XMLParserDelegate {
     
     func reloadArticles(){
         if isInternetAvailable() {
+            //reset everything to prevent duplicate articles
+            articles.removeAll()
+            titles.removeAll()
+            urls.removeAll()
+            contents.removeAll()
+            
             parser = XMLParser(contentsOf: URL(string: "http://ca-life.org/category/oped/feed/")!)!
             parser.delegate = self
             
@@ -155,14 +161,13 @@ class Op_EdTableViewController: UITableViewController, XMLParserDelegate {
                 print("parse succeeded")
                 titles.remove(at: 0)
                 titles.remove(at: 0)
-                print(titles)
+                //print(titles)
                 urls.remove(at: 0)
                 //print(urls)
                 //print(contents)
             } else {
                 print("parse failed")
             }
-            articles = [Article]()
             loadArticles()
         }
     }
